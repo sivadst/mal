@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAL Furnitures — Designed for Comfort. Built for Every Home.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cream': '#FAF8F5',
+                        'warm-white': '#F5F3EF',
+                        'charcoal': '#1A1A1A',
+                        'soft-gray': '#8A8A8A',
+                        'accent': '#B8860B',
+                        'accent-light': '#D4A843',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FAF8F5;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F5F3EF;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #B8860B;
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .animate-slide-left {
+            opacity: 0;
+            animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-slide-right {
+            opacity: 0;
+            animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-scale-in {
+            opacity: 0;
+            animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-700 {
+            animation-delay: 0.7s;
+        }
+
+        .delay-800 {
+            animation-delay: 0.8s;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Hero */
+        .hero-bg {
+            background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #1A1A1A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(184, 134, 11, 0.08) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Image hover effects */
+        .img-hover-zoom {
+            overflow: hidden;
+        }
+
+        .img-hover-zoom img {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .img-hover-zoom:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Card hover */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: #B8860B;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #D4A843;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-outline {
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: #B8860B;
+            background: rgba(184, 134, 11, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Gallery masonry */
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Parallax effect */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @media (max-width: 768px) {
+            .parallax-bg {
+                background-attachment: scroll;
+            }
+        }
+
+        /* Text gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #B8860B, #D4A843);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.3), transparent);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Loading skeleton shimmer */
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Stagger children */
+        .stagger-children>* {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .stagger-children.active>*:nth-child(1) {
+            animation: fadeInUp 0.6s 0.1s forwards;
+        }
+
+        .stagger-children.active>*:nth-child(2) {
+            animation: fadeInUp 0.6s 0.2s forwards;
+        }
+
+        .stagger-children.active>*:nth-child(3) {
+            animation: fadeInUp 0.6s 0.3s forwards;
+        }
+
+        .stagger-children.active>*:nth-child(4) {
+            animation: fadeInUp 0.6s 0.4s forwards;
+        }
+
+        .stagger-children.active>*:nth-child(5) {
+            animation: fadeInUp 0.6s 0.5s forwards;
+        }
+
+        .stagger-children.active>*:nth-child(6) {
+            animation: fadeInUp 0.6s 0.6s forwards;
+        }
+    </style>
+    <base target="_blank">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div
+                        class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                        <span class="text-white font-serif font-bold text-lg">M</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-xl font-semibold text-white tracking-wide">MAL</span>
+                        <span class="text-[10px] text-white/60 tracking-[0.3em] uppercase -mt-1">Furnitures</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="#collections"
+                        class="text-sm text-white/70 hover:text-white transition-colors duration-300 tracking-wide">Collections</a>
+                    <a href="#featured"
+                        class="text-sm text-white/70 hover:text-white transition-colors duration-300 tracking-wide">Featured</a>
+                    <a href="#gallery"
+                        class="text-sm text-white/70 hover:text-white transition-colors duration-300 tracking-wide">Gallery</a>
+                    <a href="#about"
+                        class="text-sm text-white/70 hover:text-white transition-colors duration-300 tracking-wide">About</a>
+                    <a href="#contact"
+                        class="text-sm text-white/70 hover:text-white transition-colors duration-300 tracking-wide">Contact</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden md:block">
+                    <a href="https://wa.me/" target="_blank"
+                        class="btn-primary px-6 py-2.5 rounded-full text-sm font-medium inline-flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        WhatsApp
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="md:hidden text-white p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-50 bg-charcoal">
+        <div class="flex flex-col h-full p-8">
+            <div class="flex justify-between items-center mb-12">
+                <span class="font-serif text-2xl text-white">MAL Furnitures</span>
+                <button id="closeMenu" class="text-white p-2">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="flex flex-col gap-6">
+                <a href="#collections"
+                    class="text-2xl text-white/80 hover:text-accent transition-colors mobile-link">Collections</a>
+                <a href="#featured"
+                    class="text-2xl text-white/80 hover:text-accent transition-colors mobile-link">Featured</a>
+                <a href="#gallery"
+                    class="text-2xl text-white/80 hover:text-accent transition-colors mobile-link">Gallery</a>
+                <a href="#about"
+                    class="text-2xl text-white/80 hover:text-accent transition-colors mobile-link">About</a>
+                <a href="#contact"
+                    class="text-2xl text-white/80 hover:text-accent transition-colors mobile-link">Contact</a>
+            </div>
+            <div class="mt-auto">
+                <a href="https://wa.me/" target="_blank"
+                    class="btn-primary w-full py-4 rounded-full text-center text-lg font-medium inline-flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center relative">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-32 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="text-center lg:text-left">
+                    <div class="animate-fade-in-up">
+                        <span
+                            class="inline-block px-4 py-1.5 rounded-full bg-white/10 text-accent-light text-xs font-medium tracking-[0.2em] uppercase mb-6 border border-white/10">
+                            Est. 2010 — Trusted Local Furniture
+                        </span>
+                    </div>
+
+                    <h1
+                        class="animate-fade-in-up delay-200 font-serif text-5xl md:text-6xl lg:text-7xl text-white font-medium leading-[1.1] mb-6">
+                        MAL<br>
+                        <span class="text-gradient">Furnitures</span>
+                    </h1>
+
+                    <p
+                        class="animate-fade-in-up delay-300 text-lg md:text-xl text-white/60 font-light leading-relaxed mb-10 max-w-lg mx-auto lg:mx-0">
+                        Designed for Comfort. Built for Every Home. Premium quality furniture that transforms spaces
+                        into sanctuaries.
+                    </p>
+
+                    <div
+                        class="animate-fade-in-up delay-400 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#collections"
+                            class="btn-primary px-8 py-4 rounded-full text-sm font-semibold tracking-wide inline-flex items-center justify-center gap-2">
+                            <span>Browse Collection</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://wa.me/" target="_blank"
+                            class="btn-outline px-8 py-4 rounded-full text-sm font-semibold tracking-wide inline-flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                            <span>WhatsApp Us</span>
+                        </a>
+                    </div>
+
+                    <div
+                        class="animate-fade-in-up delay-500 mt-16 flex items-center gap-8 justify-center lg:justify-start">
+                        <div class="text-center">
+                            <div class="text-2xl font-serif text-white font-semibold">15+</div>
+                            <div class="text-xs text-white/50 mt-1">Years Experience</div>
+                        </div>
+                        <div class="w-px h-10 bg-white/20"></div>
+                        <div class="text-center">
+                            <div class="text-2xl font-serif text-white font-semibold">1000+</div>
+                            <div class="text-xs text-white/50 mt-1">Happy Customers</div>
+                        </div>
+                        <div class="w-px h-10 bg-white/20"></div>
+                        <div class="text-center">
+                            <div class="text-2xl font-serif text-white font-semibold">500+</div>
+                            <div class="text-xs text-white/50 mt-1">Products</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-scale-in delay-300 hidden lg:block relative">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-accent/10 rounded-3xl blur-2xl"></div>
+                        <img src="./images/hero.jpg" alt="MAL Furnitures Showroom"
+                            class="relative rounded-2xl shadow-2xl w-full object-cover aspect-[4/5]">
+                        <div class="absolute -bottom-6 -left-6 bg-white rounded-xl p-4 shadow-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-5 h-5 text-green-600"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-charcoal">Open Now</div>
+                                    <div class="text-xs text-soft-gray">Visit our showroom</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+                <div class="w-1.5 h-3 bg-white/50 rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section id="collections" class="py-24 lg:py-32 bg-cream">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-accent text-sm font-medium tracking-[0.2em] uppercase">Our Collections</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-charcoal mt-4 mb-6">Curated for Every Space</h2>
+                <p class="text-soft-gray max-w-2xl mx-auto text-lg">From cozy bedrooms to productive offices, discover
+                    furniture collections designed to elevate every corner of your home.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children" id="collectionsGrid">
+                <!-- Bedroom -->
+                <div class="group relative overflow-hidden rounded-2xl card-hover cursor-pointer reveal-scale">
+                    <div class="img-hover-zoom aspect-[3/4]">
+                        <img src="ntnt/agents/upload/Screenshot 2026-06-15 114117.png" alt="Bedroom Collection"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div
+                            class="w-10 h-10 bg-accent/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3">
+                            <i data-lucide="bed-double" class="w-5 h-5 text-accent-light"></i>
+                        </div>
+                        <h3 class="font-serif text-xl text-white mb-1">Bedroom</h3>
+                        <p class="text-white/60 text-sm">Beds, Mattresses & Wardrobes</p>
+                    </div>
+                </div>
+
+                <!-- Seating -->
+                <div class="group relative overflow-hidden rounded-2xl card-hover cursor-pointer reveal-scale">
+                    <div class="img-hover-zoom aspect-[3/4]">
+                        <img src="./images/chair.jpg" alt="Seating Collection" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div
+                            class="w-10 h-10 bg-accent/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3">
+                            <i data-lucide="armchair" class="w-5 h-5 text-accent-light"></i>
+                        </div>
+                        <h3 class="font-serif text-xl text-white mb-1">Seating</h3>
+                        <p class="text-white/60 text-sm">Chairs, Swings & Loungers</p>
+                    </div>
+                </div>
+
+                <!-- Office -->
+                <div class="group relative overflow-hidden rounded-2xl card-hover cursor-pointer reveal-scale">
+                    <div class="img-hover-zoom aspect-[3/4]">
+                        <img src="./images/office.jpg" alt="Office Collection" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div
+                            class="w-10 h-10 bg-accent/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3">
+                            <i data-lucide="briefcase" class="w-5 h-5 text-accent-light"></i>
+                        </div>
+                        <h3 class="font-serif text-xl text-white mb-1">Office</h3>
+                        <p class="text-white/60 text-sm">Desks, Chairs & Storage</p>
+                    </div>
+                </div>
+
+                <!-- Premium Living -->
+                <div class="group relative overflow-hidden rounded-2xl card-hover cursor-pointer reveal-scale">
+                    <div class="img-hover-zoom aspect-[3/4]">
+                        <img src="./images/swing.jpg" alt="Premium Living Collection"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div
+                            class="w-10 h-10 bg-accent/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-accent-light"></i>
+                        </div>
+                        <h3 class="font-serif text-xl text-white mb-1">Premium Living</h3>
+                        <p class="text-white/60 text-sm">Dressing Units & More</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="py-24 lg:py-32 bg-warm-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 reveal">
+                <div>
+                    <span class="text-accent text-sm font-medium tracking-[0.2em] uppercase">Featured</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-charcoal mt-4">Best Sellers</h2>
+                </div>
+                <p class="text-soft-gray max-w-md mt-4 md:mt-0">Handpicked favorites from our showroom. Each piece
+                    crafted for durability, comfort, and timeless style.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Executive Chair -->
+                <div class="group reveal">
+                    <div class="relative overflow-hidden rounded-2xl bg-white shadow-sm card-hover">
+                        <div class="img-hover-zoom aspect-square">
+                            <img src="/mnt/agents/upload/Screenshot 2026-06-15 114200.png" alt="Executive Office Chair"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-accent text-white text-xs font-semibold px-3 py-1 rounded-full">Best
+                                Seller</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-charcoal mb-2">Executive Office Chair</h3>
+                            <p class="text-soft-gray text-sm mb-4">Premium leather finish with ergonomic design for
+                                all-day comfort.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">Premium Quality</span>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-charcoal/5 hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center">
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wardrobe -->
+                <div class="group reveal">
+                    <div class="relative overflow-hidden rounded-2xl bg-white shadow-sm card-hover">
+                        <div class="img-hover-zoom aspect-square">
+                            <img src="/mnt/agents/upload/Screenshot 2026-06-15 114206.png" alt="Designer Wardrobe"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-charcoal text-white text-xs font-semibold px-3 py-1 rounded-full">New
+                                Arrival</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-charcoal mb-2">Designer Wardrobe</h3>
+                            <p class="text-soft-gray text-sm mb-4">Spacious storage with mirror and modern finish in
+                                multiple colors.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">Multiple Colors</span>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-charcoal/5 hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center">
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Office Table -->
+                <div class="group reveal">
+                    <div class="relative overflow-hidden rounded-2xl bg-white shadow-sm card-hover">
+                        <div class="img-hover-zoom aspect-square">
+                            <img src="/mnt/agents/upload/Screenshot 2026-06-15 114319.png" alt="Office Reception Desk"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-charcoal mb-2">Office Reception Desk</h3>
+                            <p class="text-soft-gray text-sm mb-4">Professional reception counter with storage and
+                                premium wood finish.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">Wood Finish</span>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-charcoal/5 hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center">
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swing Chair -->
+                <div class="group reveal">
+                    <div class="relative overflow-hidden rounded-2xl bg-white shadow-sm card-hover">
+                        <div class="img-hover-zoom aspect-square">
+                            <img src="/mnt/agents/upload/Screenshot 2026-06-15 114244.png" alt="Hanging Swing Chair"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span
+                                class="bg-accent text-white text-xs font-semibold px-3 py-1 rounded-full">Popular</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-charcoal mb-2">Hanging Swing Chair</h3>
+                            <p class="text-soft-gray text-sm mb-4">Woven rattan swing with plush cushion for indoor or
+                                balcony use.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">Indoor/Outdoor</span>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-charcoal/5 hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center">
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bed -->
+                <div class="group reveal">
+                    <div class="relative overflow-hidden rounded-2xl bg-white shadow-sm card-hover">
+                        <div class="img-hover-zoom aspect-square">
+                            <img src="/mnt/agents/upload/Screenshot 2026-06-15 114151.png" alt="Carved Wooden Bed"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-charcoal mb-2">Carved Wooden Bed</h3>
+                            <p class="text-soft-gray text-sm mb-4">Intricate hand-carved headboard with premium teak
+                                wood construction.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">Handcrafted</span>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-charcoal/5 hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center">
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dressing Unit -->
+                <div class="group reveal">
+                    <div class="relative overflow-hidden rounded-2xl bg-white shadow-sm card-hover">
+                        <div class="img-hover-zoom aspect-square">
+                            <img src="/mnt/agents/upload/Screenshot 2026-06-15 114221.png"
+                                alt="Dressing Unit with Mirror" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span
+                                class="bg-charcoal text-white text-xs font-semibold px-3 py-1 rounded-full">Premium</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-charcoal mb-2">Dressing Unit</h3>
+                            <p class="text-soft-gray text-sm mb-4">Full-length mirror with storage drawers and modern
+                                marble finish.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">With Storage</span>
+                                <button
+                                    class="w-10 h-10 rounded-full bg-charcoal/5 hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center">
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 lg:py-32 bg-charcoal">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-accent text-sm font-medium tracking-[0.2em] uppercase">Showroom</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-white mt-4 mb-6">Inside Our Store</h2>
+                <p class="text-white/50 max-w-2xl mx-auto text-lg">Step into our showroom and explore our curated
+                    collection of premium furniture pieces.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-item reveal-scale">
+                    <div class="img-hover-zoom rounded-xl overflow-hidden">
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114107.png" alt="Showroom Interior"
+                            class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale">
+                    <div class="img-hover-zoom rounded-xl overflow-hidden">
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114123.png" alt="Beds Display"
+                            class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale">
+                    <div class="img-hover-zoom rounded-xl overflow-hidden">
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114129.png" alt="Plastic Chairs"
+                            class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale">
+                    <div class="img-hover-zoom rounded-xl overflow-hidden">
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114139.png" alt="Showroom Wide View"
+                            class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale">
+                    <div class="img-hover-zoom rounded-xl overflow-hidden">
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114145.png" alt="Mattresses Stack"
+                            class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale">
+                    <div class="img-hover-zoom rounded-xl overflow-hidden">
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114212.png" alt="Plastic Chair"
+                            class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale">
+                    <div class="img-hover-zoom rounded-xl overflow-hidden">
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114255.png" alt="Folding Table"
+                            class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                <div class="gallery-item reveal-scale">
+                    <div class="img-hover-zoom rounded-xl overflow-hidden">
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114117.png" alt="Showroom Beds"
+                            class="w-full h-64 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="about" class="py-24 lg:py-32 bg-cream">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left">
+                    <span class="text-accent text-sm font-medium tracking-[0.2em] uppercase">Why MAL Furnitures</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-charcoal mt-4 mb-6">Trusted by Families for Over 15
+                        Years</h2>
+                    <p class="text-soft-gray text-lg leading-relaxed mb-8">We believe quality furniture should be
+                        accessible to every home. That's why we combine premium craftsmanship with honest pricing —
+                        delivering pieces that last generations without breaking the bank.</p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="award" class="w-6 h-6 text-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-1">Quality Furniture</h4>
+                                <p class="text-soft-gray text-sm">Handpicked materials and rigorous quality checks on
+                                    every piece.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="tag" class="w-6 h-6 text-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-1">Affordable Pricing</h4>
+                                <p class="text-soft-gray text-sm">Direct from manufacturer pricing with no middleman
+                                    markup.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="layers" class="w-6 h-6 text-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-1">Wide Product Range</h4>
+                                <p class="text-soft-gray text-sm">500+ products across bedroom, office, and living
+                                    categories.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="shield-check" class="w-6 h-6 text-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-1">Trusted Local Business</h4>
+                                <p class="text-soft-gray text-sm">Serving the community since 2010 with 1000+ happy
+                                    customers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-right">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-accent/5 rounded-3xl"></div>
+                        <img src="/mnt/agents/upload/Screenshot 2026-06-15 114123.png" alt="MAL Furnitures Showroom"
+                            class="relative rounded-2xl shadow-2xl w-full object-cover aspect-[4/5]">
+                        <div class="absolute -bottom-6 -right-6 bg-white rounded-xl p-5 shadow-xl">
+                            <div class="flex items-center gap-4">
+                                <div class="flex -space-x-3">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+                                        M</div>
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-charcoal flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+                                        A</div>
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-soft-gray flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+                                        L</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-charcoal">Family Owned</div>
+                                    <div class="text-xs text-soft-gray">Since 2010</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-20 bg-charcoal relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10 reveal">
+            <h2 class="font-serif text-3xl md:text-5xl text-white mb-6">Ready to Transform Your Space?</h2>
+            <p class="text-white/60 text-lg mb-10 max-w-2xl mx-auto">Visit our showroom today and let our team help you
+                find the perfect furniture for your home or office.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/" target="_blank"
+                    class="btn-primary px-8 py-4 rounded-full text-sm font-semibold tracking-wide inline-flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Chat on WhatsApp
+                </a>
+                <a href="#contact"
+                    class="btn-outline px-8 py-4 rounded-full text-sm font-semibold tracking-wide inline-flex items-center justify-center gap-2">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    Get Directions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 lg:py-32 bg-cream">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-accent text-sm font-medium tracking-[0.2em] uppercase">Get in Touch</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-charcoal mt-4 mb-6">Visit Our Showroom</h2>
+                <p class="text-soft-gray max-w-2xl mx-auto text-lg">We'd love to welcome you to our store. Drop by,
+                    explore our collection, and let's find the perfect furniture for your space.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Contact Cards -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="bg-white rounded-2xl p-8 shadow-sm card-hover reveal">
+                        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-accent"></i>
+                        </div>
+                        <h3 class="font-serif text-lg text-charcoal mb-2">Store Address</h3>
+                        <p class="text-soft-gray text-sm leading-relaxed">MAL Furnitures Showroom<br>Local Market
+                            Area<br>Your City, State</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-sm card-hover reveal">
+                        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="phone" class="w-6 h-6 text-accent"></i>
+                        </div>
+                        <h3 class="font-serif text-lg text-charcoal mb-2">Phone Number</h3>
+                        <p class="text-soft-gray text-sm">+91 XXXXX XXXXX</p>
+                        <p class="text-soft-gray text-xs mt-1">Available 9 AM — 9 PM</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-sm card-hover reveal">
+                        <div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="message-circle" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <h3 class="font-serif text-lg text-charcoal mb-2">WhatsApp</h3>
+                        <p class="text-soft-gray text-sm mb-4">Message us for quick inquiries and quotes.</p>
+                        <a href="https://wa.me/" target="_blank"
+                            class="inline-flex items-center gap-2 text-green-600 font-medium text-sm hover:underline">
+                            <span>Chat Now</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Map / Store Hours -->
+                <div class="lg:col-span-2 reveal">
+                    <div class="bg-white rounded-2xl shadow-sm overflow-hidden h-full">
+                        <div class="aspect-video bg-charcoal/5 relative flex items-center justify-center">
+                            <div class="text-center">
+                                <div
+                                    class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="map" class="w-8 h-8 text-accent"></i>
+                                </div>
+                                <h3 class="font-serif text-xl text-charcoal mb-2">Find Us on Google Maps</h3>
+                                <p class="text-soft-gray text-sm mb-4">Click below to get directions to our showroom</p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-primary px-6 py-3 rounded-full text-sm font-medium inline-flex items-center gap-2">
+                                    <i data-lucide="navigation" class="w-4 h-4"></i>
+                                    Open in Maps
+                                </a>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="font-serif text-xl text-charcoal mb-6">Store Hours</h3>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                                    <span class="text-soft-gray">Monday — Saturday</span>
+                                    <span class="font-medium text-charcoal">9:00 AM — 9:00 PM</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                                    <span class="text-soft-gray">Sunday</span>
+                                    <span class="font-medium text-charcoal">10:00 AM — 8:00 PM</span>
+                                </div>
+                            </div>
+                            <div class="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-100">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="info" class="w-5 h-5 text-amber-600 mt-0.5"></i>
+                                    <div>
+                                        <p class="text-amber-800 text-sm font-medium">Holiday Hours May Vary</p>
+                                        <p class="text-amber-600 text-xs mt-1">Please call ahead or message us on
+                                            WhatsApp to confirm availability during holidays.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
+                            <span class="text-white font-serif font-bold text-lg">M</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-serif text-xl font-semibold text-white tracking-wide">MAL</span>
+                            <span class="text-[10px] text-white/60 tracking-[0.3em] uppercase -mt-1">Furnitures</span>
+                        </div>
+                    </div>
+                    <p class="text-white/50 text-sm leading-relaxed mb-6">Premium quality furniture for every home.
+                        Serving families with trust since 2010.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors duration-300 flex items-center justify-center">
+                            <i data-lucide="facebook" class="w-4 h-4 text-white"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-white"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors duration-300 flex items-center justify-center">
+                            <i data-lucide="message-circle" class="w-4 h-4 text-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#collections"
+                                class="text-white/50 hover:text-accent transition-colors text-sm">Collections</a></li>
+                        <li><a href="#featured"
+                                class="text-white/50 hover:text-accent transition-colors text-sm">Featured Products</a>
+                        </li>
+                        <li><a href="#gallery"
+                                class="text-white/50 hover:text-accent transition-colors text-sm">Showroom Gallery</a>
+                        </li>
+                        <li><a href="#about" class="text-white/50 hover:text-accent transition-colors text-sm">About
+                                Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Categories</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/50 hover:text-accent transition-colors text-sm">Bedroom
+                                Furniture</a></li>
+                        <li><a href="#" class="text-white/50 hover:text-accent transition-colors text-sm">Office
+                                Furniture</a></li>
+                        <li><a href="#" class="text-white/50 hover:text-accent transition-colors text-sm">Seating &
+                                Chairs</a></li>
+                        <li><a href="#" class="text-white/50 hover:text-accent transition-colors text-sm">Storage &
+                                Wardrobes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-white/50 text-sm">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-accent"></i>
+                            <span>Local Market Area</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-white/50 text-sm">
+                            <i data-lucide="phone" class="w-4 h-4 text-accent"></i>
+                            <span>+91 XXXXX XXXXX</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-white/50 text-sm">
+                            <i data-lucide="clock" class="w-4 h-4 text-accent"></i>
+                            <span>9 AM — 9 PM Daily</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-divider mb-8"></div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">© 2024 MAL Furnitures. All rights reserved.</p>
+                <p class="text-white/40 text-sm">Designed with care for local businesses.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/" target="_blank"
+        class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-green-500 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 group">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+        <span
+            class="absolute right-16 bg-charcoal text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Chat
+            with us</span>
+    </a>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.classList.add('bg-charcoal/90', 'nav-blur', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-charcoal/90', 'nav-blur', 'shadow-lg');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Scroll Reveal with Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+
+                    // Handle stagger children
+                    if (entry.target.classList.contains('stagger-children')) {
+                        entry.target.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-bg');
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.backgroundPositionY = `${scrolled * speed}px`;
+            });
+        });
+
+        // Gallery lightbox (simple)
+        const galleryImages = document.querySelectorAll('.gallery-item img');
+        galleryImages.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+                // Create lightbox
+                const lightbox = document.createElement('div');
+                lightbox.className = 'fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4';
+                lightbox.innerHTML = `
+                    <div class="relative max-w-4xl w-full">
+                        <button class="absolute -top-12 right-0 text-white hover:text-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                        <img src="${img.src}" alt="${img.alt}" class="w-full rounded-lg shadow-2xl">
+                    </div>
+                `;
+                document.body.appendChild(lightbox);
+                document.body.style.overflow = 'hidden';
+
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox || e.target.closest('button')) {
+                        lightbox.remove();
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+        });
+
+        // Add loading state for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function () {
+                this.style.opacity = '1';
+            });
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.5s ease';
+        });
+    </script>
+</body>
+
+</html>
